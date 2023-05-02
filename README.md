@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/5x3fsql3hg4aokym?svg=true)](https://ci.appveyor.com/project/nstevens1040/anglesharp-domparser)
 # AngleSharp.DOMParser
 This library uses [AngelSharp](https://github.com/AngleSharp/AngleSharp) to parse an HTML string into a document object model. The library targets **.NET Framework 4.7.2** so that it is compatible with **Windows PowerShell**.
 ## Build the Library
