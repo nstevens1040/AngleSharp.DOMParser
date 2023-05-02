@@ -2,10 +2,7 @@ version: 1.0.1
 image: Visual Studio 2022
 skip_tags: true
 before_build:
-- ps: >-
-    Invoke-WebRequest -Uri 'https://dot.net/v1/dotnet-install.ps1' -UseBasicParsing -OutFile "$env:temp\dotnet-install.ps1"; & $env:temp\dotnet-install.ps1 -Architecture x64 -Version '6.0.100-rc.2.21505.57' -InstallDir "$env:ProgramFiles\dotnet"; 
-- dotnet clean
-- dotnet restore
+- MSBuild.exe -p:RestorePackagesConfig=true -t:restore
 - choco install 7zip -y
 #build_script:
 #- dotnet build --framework net6.0 --configuration Release --verbosity normal --self-contained AngleSharp.DOMParser.sln
