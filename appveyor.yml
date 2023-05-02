@@ -1,0 +1,41 @@
+version: 1.0.1
+image: Visual Studio 2022
+skip_tags: true
+before_build:
+- ps: >-
+    Invoke-WebRequest -Uri 'https://dot.net/v1/dotnet-install.ps1' -UseBasicParsing -OutFile "$env:temp\dotnet-install.ps1"; & $env:temp\dotnet-install.ps1 -Architecture x64 -Version '6.0.100-rc.2.21505.57' -InstallDir "$env:ProgramFiles\dotnet"; 
+- dotnet clean
+- dotnet restore
+- choco install 7zip -y
+#build_script:
+#- dotnet build --framework net6.0 --configuration Release --verbosity normal --self-contained AngleSharp.DOMParser.sln
+build:
+  publish_nuget: true
+  verbosity: normal
+  project: AngleSharp.DOMParser.sln
+nuget:
+  project_feed: true
+deploy:
+  - provider: NuGet
+    server: https://nuget.pkg.github.com/nstevens1040/index.json
+    artifact: AngleSharp.DOMParser-latest.nupkg
+    username: nstevens1040
+    api_key:
+      secure: 1fo4bhFuqGYKGzv2VK9P/beOi1S7DxBO+9Wg98pkKiOxNWPE/p4Fb9sPWk3qhLth
+  - provider: GitHub
+    tag: v1.0.1
+    release: v1.0.1 stable
+    description: 'Pushing latest AngleSharp.DOMParser binaries.'
+    auth_token:
+      secure: ElzOGqa44YRqwJ9jKgjBNDbPEmxb1Mg3I+0TxsPQg8OdUSOA8T8DwkwoKofTXMQT
+    artifact: AngleSharp.DOMParser.1.0.1.zip,AngleSharp.DOMParser-latest.nupkg
+    draft: false
+    prerelease: false
+artifacts:
+  - path: AngleSharp.DOMParser*.zip
+    name: AngleSharp.DOMParser
+    type: File
+after_build:
+- ps: >-
+    refreshenv; . 7z.exe a "AngleSharp.DOMParser.1.0.1.zip" .\AngleSharp.DOMParser\bin\build\AngleSharp.DOMParser.dll; Push-AppveyorArtifact "$($PWD.Path)\AngleSharp.DOMParser.1.0.1.zip" -FileName "AngleSharp.DOMParser.1.0.1.zip"; if( @(get-childitem -Recurse -Path "$($ENV:TEMP)" ).Where({$_.Extension -eq ".nupkg" -and $_.Name -match "AngleSharp.DOMParser"}) ){ $nupkg = @(get-childitem -Recurse -Path "$($ENV:TEMP)" ).Where({$_.Extension -eq ".nupkg" -and $_.Name -match "AngleSharp.DOMParser"})[0]; Copy-Item $nupkg.FullName . ; Move-Item -LiteralPath "$($PWD.Path)\$($nupkg.Name)" -Destination "$($PWD.Path)\AngleSharp.DOMParser-latest.nupkg"; Push-AppveyorArtifact "$($PWD.Path)\AngleSharp.DOMParser-latest.nupkg" -FileName "AngleSharp.DOMParser-latest.nupkg" }
+    
