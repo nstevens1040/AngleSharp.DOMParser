@@ -6,6 +6,7 @@
     remove-item "$($PWD.Path)\ilmerge.3.0.41.nupkg" -ea 0
     remove-item -Recurse -Force -Path "$($PWD.Path)\ilmerge.3.0.41" -ea 0
     remove-item "$($PWD.Path)\ilmerge.3.0.41.zip" -ea 0
+    remove-item ".\bin\AngleSharp.DomParser.ILMerge.log" -ea 0
     if((Get-ExecutionPolicy) -notin @([Microsoft.PowerShell.ExecutionPolicy]::Unrestricted,[Microsoft.PowerShell.ExecutionPolicy]::Bypass))
     {
         if(
@@ -28,16 +29,18 @@
     Move-Item "$($PWD.Path)\ilmerge.3.0.41.nupkg" "$($PWD.Path)\ilmerge.3.0.41.zip"
     Expand-Archive -Path "$($PWD.Path)\ilmerge.3.0.41.zip" -Destination "$($PWD.Path)\ilmerge.3.0.41"
     $ilmerge = "$($PWD.Path)\ilmerge.3.0.41\tools\net452\ILMerge.exe"
-    if(!(Test-Path ".\build" -ea 0)){ $null = mkdir ".\build" }
+    if(!(Test-Path ".\bin\build" -ea 0)){ $null = mkdir ".\bin\build" }
     . $ilmerge /lib:.\bin\Debug `
-    /log:.\AngleSharp.DomParser.ILMerge.log `
+    /log:.\bin\AngleSharp.DomParser.ILMerge.log `
     /target:library `
     /targetplatform:v4 `
-    /out:.\build\AngleSharp.DomParser.dll `
+    /out:.\bin\build\AngleSharp.DomParser.dll `
     .\bin\Debug\AngleSharp.DOMParser.dll `
     .\bin\Debug\System.Text.Encoding.CodePages.dll `
     .\bin\Debug\AngleSharp.dll `
     .\bin\Debug\System.Buffers.dll `
     .\bin\Debug\System.Memory.dll `
     .\bin\Debug\System.Numerics.Vectors.dll `
-    .\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll        
+    .\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+    remove-item -Recurse -Force -Path "$($PWD.Path)\ilmerge.3.0.41" -ea 0
+    remove-item "$($PWD.Path)\ilmerge.3.0.41.zip" -ea 0
