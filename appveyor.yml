@@ -1,6 +1,10 @@
-version: 1.1.2
+version: 1.1.4
 image: Visual Studio 2022
 skip_tags: true
+platform:
+  - x64
+configuration:
+  - Release
 before_build:
 - MSBuild.exe -p:RestorePackagesConfig=true -t:restore
 - choco install 7zip -y
@@ -20,12 +24,12 @@ deploy:
     api_key:
       secure: 1fo4bhFuqGYKGzv2VK9P/beOi1S7DxBO+9Wg98pkKiOxNWPE/p4Fb9sPWk3qhLth
   - provider: GitHub
-    tag: v1.1.2
-    release: v1.1.2 stable
+    tag: v1.1.4
+    release: v1.1.4 stable
     description: 'Pushing latest AngleSharp.DOMParser binaries.'
     auth_token:
       secure: ElzOGqa44YRqwJ9jKgjBNDbPEmxb1Mg3I+0TxsPQg8OdUSOA8T8DwkwoKofTXMQT
-    artifact: AngleSharp.DOMParser.1.1.2.zip,AngleSharp.DOMParser-latest.nupkg
+    artifact: AngleSharp.DOMParser.1.1.4.zip,AngleSharp.DOMParser-latest.nupkg
     draft: false
     prerelease: false
 artifacts:
@@ -34,5 +38,5 @@ artifacts:
     type: File
 after_build:
 - ps: >-
-    refreshenv; . 7z.exe a "AngleSharp.DOMParser.1.1.2.zip" .\AngleSharp.DOMParser\bin\build\AngleSharp.DOMParser.dll; Push-AppveyorArtifact "$($PWD.Path)\AngleSharp.DOMParser.1.1.2.zip" -FileName "AngleSharp.DOMParser.1.1.2.zip"; if( @(get-childitem -Recurse -Path "$($ENV:TEMP)" ).Where({$_.Extension -eq ".nupkg" -and $_.Name -match "AngleSharp.DOMParser"}) ){ $nupkg = @(get-childitem -Recurse -Path "$($ENV:TEMP)" ).Where({$_.Extension -eq ".nupkg" -and $_.Name -match "AngleSharp.DOMParser"})[0]; Copy-Item $nupkg.FullName . ; Move-Item -LiteralPath "$($PWD.Path)\$($nupkg.Name)" -Destination "$($PWD.Path)\AngleSharp.DOMParser-latest.nupkg"; Push-AppveyorArtifact "$($PWD.Path)\AngleSharp.DOMParser-latest.nupkg" -FileName "AngleSharp.DOMParser-latest.nupkg" } else { write-host "nupkg not found!" -ForegroundColor Yellow }
+    refreshenv; . 7z.exe a "AngleSharp.DOMParser.1.1.4.zip" .\AngleSharp.DOMParser\bin\build\AngleSharp.DOMParser.dll; Push-AppveyorArtifact "$($PWD.Path)\AngleSharp.DOMParser.1.1.4.zip" -FileName "AngleSharp.DOMParser.1.1.4.zip"; if( @(get-childitem -Recurse -Path "$($ENV:TEMP)" ).Where({$_.Extension -eq ".nupkg" -and $_.Name -match "AngleSharp.DOMParser"}) ){ $nupkg = @(get-childitem -Recurse -Path "$($ENV:TEMP)" ).Where({$_.Extension -eq ".nupkg" -and $_.Name -match "AngleSharp.DOMParser"})[0]; Copy-Item $nupkg.FullName . ; Move-Item -LiteralPath "$($PWD.Path)\$($nupkg.Name)" -Destination "$($PWD.Path)\AngleSharp.DOMParser-latest.nupkg"; Push-AppveyorArtifact "$($PWD.Path)\AngleSharp.DOMParser-latest.nupkg" -FileName "AngleSharp.DOMParser-latest.nupkg" } else { write-host "nupkg not found!" -ForegroundColor Yellow }
     
