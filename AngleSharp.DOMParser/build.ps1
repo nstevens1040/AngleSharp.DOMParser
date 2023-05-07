@@ -35,6 +35,7 @@
     /target:library `
     /targetplatform:v4 `
     /out:.\bin\build\AngleSharp.DomParser.dll `
+    /keyfile:.\AngleSharp.DOMParser.snk `
     .\bin\Debug\AngleSharp.DOMParser.dll `
     .\bin\Debug\System.Text.Encoding.CodePages.dll `
     .\bin\Debug\AngleSharp.dll `
