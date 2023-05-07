@@ -7,7 +7,7 @@ Compiling in **Windows PowerShell**
 git clone https://github.com/nstevens1040/AngleSharp.DOMParser.git
 cd .\AngleSharp.DOMParser\
 MSBuild.exe -p:RestorePackagesConfig=true -t:restore
-MSBuild.exe .\AngleSharp.DOMParser.sln
+MSBuild.exe .\AngleSharp.DOMParser\AngleSharp.DOMParser.csproj
 ```
 ## Load the Library
 Into **Windows PowerShell** and then test it.
