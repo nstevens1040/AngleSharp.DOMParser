@@ -1,7 +1,7 @@
 
     [cmdletbinding()]
     Param()
-    cd ..\..\..\
+    cd ..\..\
     write-Host "$($PWD.Path)"
     #cd [System.IO.FileInfo]::New($MyInvocation.MyCommand.Path).Directory.FullName
     remove-item "$($PWD.Path)\ilmerge.3.0.41.nupkg" -ea 0

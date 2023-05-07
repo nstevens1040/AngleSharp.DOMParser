@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>AngleSharp.DOMParser</id>
+    <version>1.0.9</version>
+    <title>AngleSharp.DOMParser</title>
+    <authors>nstevens1040</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Unlicense</license>
+    <projectUrl>https://github.com/nstevens1040/AngleSharp.DOMParser</projectUrl>
+    <description>This library uses AngelSharp to parse an HTML string into a document object model. The library targets .NET Framework 4.7.2 so that it is compatible with Windows PowerShell.</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright © nstevens1040 2023</copyright>
+    <tags>html parser library csharp dom powershell document-object-model dotnet-framework windows-powershell</tags>
+    <repository type="git" url="https://github.com/nstevens1040/AngleSharp.DOMParser.git" branch="master" commit="" />
+  </metadata>
+</package>
