@@ -12,7 +12,7 @@ MSBuild.exe .\AngleSharp.DOMParser\AngleSharp.DOMParser.csproj
 ## Load the Library
 Into **Windows PowerShell** and then test it.
 ```ps1
-Add-Type -Path .\AngleSharp.DOMParser\build\AngleSharp.DomParser.dll
+Add-Type -Path .\AngleSharp.DOMParser\bin\build\AngleSharp.DomParser.dll
 $html_string = @"
 <!DOCTYPE html>
 <html>

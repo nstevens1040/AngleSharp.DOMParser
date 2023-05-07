@@ -1,7 +1,7 @@
 
     [cmdletbinding()]
     Param()
-    cd ..\..\..\
+    cd ..\..\
     write-Host "$($PWD.Path)"
     #cd [System.IO.FileInfo]::New($MyInvocation.MyCommand.Path).Directory.FullName
     remove-item "$($PWD.Path)\ilmerge.3.0.41.nupkg" -ea 0
@@ -31,18 +31,18 @@
     Expand-Archive -Path "$($PWD.Path)\ilmerge.3.0.41.zip" -Destination "$($PWD.Path)\ilmerge.3.0.41"
     $ilmerge = "$($PWD.Path)\ilmerge.3.0.41\tools\net452\ILMerge.exe"
     if(!(Test-Path ".\bin\build" -ea 0)){ $null = mkdir ".\bin\build" }
-    . $ilmerge /lib:.\bin\x64\Release `
+    . $ilmerge /lib:.\bin\Release `
     /log:.\bin\AngleSharp.DomParser.ILMerge.log `
     /target:library `
     /targetplatform:v4 `
     /out:.\bin\build\AngleSharp.DomParser.dll `
     /keyfile:.\AngleSharp.DOMParser.snk `
-    .\bin\x64\Release\AngleSharp.DOMParser.dll `
-    .\bin\x64\Release\System.Text.Encoding.CodePages.dll `
-    .\bin\x64\Release\AngleSharp.dll `
-    .\bin\x64\Release\System.Buffers.dll `
-    .\bin\x64\Release\System.Memory.dll `
-    .\bin\x64\Release\System.Numerics.Vectors.dll `
-    .\bin\x64\Release\System.Runtime.CompilerServices.Unsafe.dll
+    .\bin\Release\AngleSharp.DOMParser.dll `
+    .\bin\Release\System.Text.Encoding.CodePages.dll `
+    .\bin\Release\AngleSharp.dll `
+    .\bin\Release\System.Buffers.dll `
+    .\bin\Release\System.Memory.dll `
+    .\bin\Release\System.Numerics.Vectors.dll `
+    .\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
     remove-item -Recurse -Force -Path "$($PWD.Path)\ilmerge.3.0.41" -ea 0
     remove-item "$($PWD.Path)\ilmerge.3.0.41.zip" -ea 0

@@ -13,10 +13,10 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <PackageTags>html;parser;parse;csharp;dom;powershell;document-object-model;dotnet-framework;windows-powershell;dotnet</PackageTags>
-    <AssemblyVersion>1.1.4</AssemblyVersion>
-    <FileVersion>1.1.4</FileVersion>
+    <AssemblyVersion>1.1.6</AssemblyVersion>
+    <FileVersion>1.1.6</FileVersion>
     <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
-    <Version>1.1.4</Version>
+    <Version>1.1.6</Version>
     <Authors>nstevens1040</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -105,6 +105,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd
-C:\Windows\System32\WindowsPowerShell\v1.0\powershell -ep bypass -noprofile -file ..\..\..\build.ps1</PostBuildEvent>
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell -ep bypass -noprofile -file ..\..\build.ps1</PostBuildEvent>
   </PropertyGroup>
 </Project>
