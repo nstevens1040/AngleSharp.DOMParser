@@ -37,12 +37,12 @@
     /targetplatform:v4 `
     /out:.\bin\build\AngleSharp.DomParser.dll `
     /keyfile:.\AngleSharp.DOMParser.snk `
-    .\bin\Release\AngleSharp.DOMParser.dll `
-    .\bin\Release\System.Text.Encoding.CodePages.dll `
-    .\bin\Release\AngleSharp.dll `
-    .\bin\Release\System.Buffers.dll `
-    .\bin\Release\System.Memory.dll `
-    .\bin\Release\System.Numerics.Vectors.dll `
-    .\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+    .\bin\Debug\AngleSharp.DOMParser.dll `
+    .\lib\System.Text.Encoding.CodePages.dll `
+    .\lib\AngleSharp.dll `
+    .\lib\System.Buffers.dll `
+    .\lib\System.Memory.dll `
+    .\lib\System.Numerics.Vectors.dll `
+    .\lib\System.Runtime.CompilerServices.Unsafe.dll
     remove-item -Recurse -Force -Path "$($PWD.Path)\ilmerge.3.0.41" -ea 0
     remove-item "$($PWD.Path)\ilmerge.3.0.41.zip" -ea 0
